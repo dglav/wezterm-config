@@ -30,7 +30,7 @@ config.show_new_tab_button_in_tab_bar = false
 -- How many lines of scrollback you want to retain per tab
 config.scrollback_lines = 3500
 
--- Close window without prmpting
+-- Close window without prompting
 config.window_close_confirmation = "NeverPrompt"
 
 wezterm.on("update-right-status", function(window)
