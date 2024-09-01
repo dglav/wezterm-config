@@ -23,6 +23,9 @@ config.window_padding = {
 	top = 10,
 	bottom = 0,
 }
+config.window_frame = {
+	active_titlebar_bg = "#000",
+}
 -- config.enable_tab_bar = false -- update when I start using tmux?
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
@@ -33,25 +36,26 @@ config.scrollback_lines = 3500
 -- Close window without prompting
 config.window_close_confirmation = "NeverPrompt"
 
-wezterm.on("update-right-status", function(window)
-	-- Grab the utf8 character for the "powerline" left facing
-	-- solid arrow. Fiddle with the colors to see it...
-	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-
-	local fg = window:effective_config().char_select_fg_color
-
-	-- Make it italic and underlined
-	window:set_right_status(wezterm.format({
-		-- First, we draw the arrow...
-		{ Background = { Color = "none" } },
-		{ Foreground = { Color = "black" } },
-		{ Text = SOLID_LEFT_ARROW },
-		-- Then we draw our text
-		{ Background = { Color = "black" } },
-		{ Foreground = { Color = fg } },
-		{ Text = " " .. wezterm.hostname() .. "   " },
-	}))
-end)
+-- Leaving for reference in the future if I want to use something similar:
+-- wezterm.on("update-right-status", function(window)
+-- 	-- Grab the utf8 character for the "powerline" left facing
+-- 	-- solid arrow. Fiddle with the colors to see it...
+-- 	local SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+--
+-- 	local fg = window:effective_config().char_select_fg_color
+--
+-- 	-- Make it italic and underlined
+-- 	window:set_right_status(wezterm.format({
+-- 		-- First, we draw the arrow...
+-- 		{ Background = { Color = "none" } },
+-- 		{ Foreground = { Color = "black" } },
+-- 		{ Text = SOLID_LEFT_ARROW },
+-- 		-- Then we draw our text
+-- 		{ Background = { Color = "black" } },
+-- 		{ Foreground = { Color = fg } },
+-- 		{ Text = " " .. wezterm.hostname() .. "   " },
+-- 	}))
+-- end)
 
 -- Returns our config to be evaluated. We must always do this at the bottom of this file
 return config
