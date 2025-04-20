@@ -5,11 +5,12 @@ local wezterm = require("wezterm")
 -- Creates a config object which we will be adding our config to
 local config = wezterm.config_builder()
 
--- config.color_scheme = "Tokyo Night"
+config.color_scheme = "Tokyo Night"
 
 -- Slightly transparent and blurred background
-config.window_background_opacity = 0.9
-config.macos_window_background_blur = 30
+config.window_background_opacity = 0.8
+config.text_background_opacity = 1.0
+config.macos_window_background_blur = 10
 
 -- Removes the title bar, leaving only the tab bar. Keeps
 -- the ability to resize by dragging the window's edges.
@@ -34,7 +35,7 @@ config.show_new_tab_button_in_tab_bar = false
 config.scrollback_lines = 3500
 
 -- Close window without prompting
-config.window_close_confirmation = "NeverPrompt"
+-- config.window_close_confirmation = "NeverPrompt"
 
 -- Leaving for reference in the future if I want to use something similar:
 -- wezterm.on("update-right-status", function(window)
@@ -56,6 +57,21 @@ config.window_close_confirmation = "NeverPrompt"
 -- 		{ Text = " " .. wezterm.hostname() .. "   " },
 -- 	}))
 -- end)
+
+config.keys = {
+	-- Move tab left
+	{
+		key = "[",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.MoveTabRelative(-1),
+	},
+	-- Move tab right
+	{
+		key = "]",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.MoveTabRelative(1),
+	},
+}
 
 -- Returns our config to be evaluated. We must always do this at the bottom of this file
 return config
